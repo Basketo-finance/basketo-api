@@ -3,13 +3,13 @@ const moment = require("moment");
 
 async function getDataPoints(req, res) {
   try {
-    const { basketData } = req.body;
+    const { basketData, days } = req.body;
     let growthRatePercentage = [],
       timeStamp;
     for (let i = 0; i < basketData.length; i++) {
       await axios
         .get(
-          `https://api.coingecko.com/api/v3/coins/${basketData[i].name}/ohlc?vs_currency=usd&days=${basketData[i].noOfDays}`
+          `https://api.coingecko.com/api/v3/coins/${basketData[i].id}/ohlc?vs_currency=usd&days=${days}`
         )
         .then((result) => {
           let coinsObj = {
@@ -28,7 +28,8 @@ async function getDataPoints(req, res) {
           );
           timeStamp = timeStamps;
           growthRatePercentage.push(growthRate);
-        });
+        })
+        .catch(err => console.log(err))
     }
     var sum = (r, a) =>
       r.map((b, i) => {
