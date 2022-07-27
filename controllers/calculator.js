@@ -3,8 +3,8 @@ const { singleBasket } = require("../utils/db");
 
 const calculate = async (req, res) => {
   try {
-    const { amount, days } = req.body;
-    const basket = await singleBasket(req.params.id);
+    const { amount, days, id } = req.body;
+    const basket = await singleBasket(id);
     const growthRatePercentages = [];
 
     for (let i = 0; i < basket.coins.length; i++) {

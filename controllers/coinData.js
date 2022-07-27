@@ -2,7 +2,7 @@ const { default: axios } = require("axios");
 
 const getCoinPrice = (req, res) => {
   try {
-    const { coin, currency } = req.params;
+    const { coin, currency } = req.body;
     axios
       .get(
         `https://api.coingecko.com/api/v3/simple/price?ids=${coin}&vs_currencies=${currency}`
