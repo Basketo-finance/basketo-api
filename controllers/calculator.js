@@ -25,7 +25,7 @@ const calculate = async (req, res) => {
     }
 
     const totalGrowth = growthRatePercentages.reduce((a, b) => a + b, 0);
-    const returns = ((amount * totalGrowth) / 100 + amount).toFixed(2);
+    const returns = (amount * totalGrowth) / 100 + amount;
     res.send({ returns });
   } catch (err) {
     console.log(err);
