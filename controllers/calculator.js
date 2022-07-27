@@ -3,12 +3,12 @@ const { singleBasket } = require("../utils/db");
 
 const calculate = async (req, res) => {
   try {
-    const { amount } = req.body;
+    const { amount, days } = req.body;
     const basket = await singleBasket(req.params.id);
     const growthRatePercentages = [];
 
     for (let i = 0; i < basket.coins.length; i++) {
-      const graphData = await getGraphData(basket.coins[i], 30);
+      const graphData = await getGraphData(basket.coins[i], days);
       let coinsObj = {
         [basket.coins[i].name]: graphData.data.map((item) => ({ ...item })),
       };
