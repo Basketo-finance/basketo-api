@@ -3,12 +3,13 @@ const { singleBasket } = require("../utils/db");
 
 const createBasket = async (req, res) => {
   try {
+    const { accountId, name, description, symbol, coins } = req.body;
     const basket = new Basket({
-      accountId: req.body.accountId,
-      name: req.body.name,
-      description: req.body.description,
-      symbol: req.body.symbol,
-      coins: req.body.coins,
+      accountId: accountId,
+      name: name,
+      description: description,
+      symbol: symbol,
+      coins: coins,
     });
     await basket.save();
     res.send(basket);

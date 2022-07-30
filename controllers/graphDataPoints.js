@@ -16,7 +16,7 @@ async function getDataPoints(req, res) {
       let growthRate = coinsObj[basketData[i].name].map(
         (item) =>
           ((((item["4"] - item["1"]) * 100) / item["1"]) *
-            [basketData[i].ratio]) /
+            [basketData[i].weight]) /
           100
       );
       let timeStamps = coinsObj[basketData[i].name].map((item) => item["0"]);
