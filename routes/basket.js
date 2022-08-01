@@ -7,7 +7,7 @@ const {
 var router = express.Router();
 
 router.post("/basket/new", createBasket);
-router.get("/basket/:id", getBasket);
 router.get("/baskets", getBaskets);
+router.get("/basket/:id", getBasket);
 
 module.exports = router;
