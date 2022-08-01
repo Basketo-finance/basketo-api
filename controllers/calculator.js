@@ -24,8 +24,12 @@ const calculate = async (req, res) => {
     }
 
     const totalGrowth = growthRatePercentages.reduce((a, b) => a + b, 0);
-    const returns = (amount * totalGrowth) / 100 + amount;
-    res.send({ returns });
+    const returns = (amount * totalGrowth) / 100;
+    res.send({
+      growthPercentage: totalGrowth,
+      returns: returns,
+      roi: returns + Number(amount),
+    });
   } catch (err) {
     console.log(err);
     res.json({ error: err }).status(400);

@@ -1,8 +1,9 @@
 const User = require("../models/user");
+const { user } = require("../utils/db");
 
 const createUser = async (req, res) => {
   try {
-    if (!isExist) {
+    if (!(await user(req.body.userAddress))) {
       const user = new User({
         userAddress: req.body.userAddress,
         firstName: req.body.firstName,
@@ -11,8 +12,9 @@ const createUser = async (req, res) => {
       });
       await user.save();
       res.send(user);
+    } else {
+      res.send({ isExist: true });
     }
-    res.send({ isExist, isExist: true });
   } catch (err) {
     res.status(400).json(err);
   }
@@ -29,9 +31,11 @@ const getUser = async (req, res) => {
 
 const isExist = async (req, res) => {
   try {
-    const user = await User.findOne({ userAddress: req.query.userAddress });
-    console.log(req.query);
-    user ? res.send({ isExist: true }) : res.send({ isExist: false });
+    if (await user(req.query.userAddress)) {
+      res.send({ isExist: true });
+    } else {
+      res.send({ isExist: false });
+    }
   } catch (err) {
     res.status(400).json(err);
   }
