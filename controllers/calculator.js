@@ -1,4 +1,4 @@
-const { getGraphData } = require("../utils/api");
+const { getOhlcData } = require("../utils/api");
 const { singleBasket } = require("../utils/db");
 
 const calculate = async (req, res) => {
@@ -7,7 +7,7 @@ const calculate = async (req, res) => {
     const basket = await singleBasket(id);
     const growthRatePercentages = [];
     for (let i = 0; i < basket.coins.length; i++) {
-      const graphData = await getGraphData(basket.coins[i], days);
+      const graphData = await getOhlcData(basket.coins[i], days);
       let coinsObj = {
         [basket.coins[i].name]: graphData.data.map((item) => ({ ...item })),
       };

@@ -33,7 +33,7 @@ const getCoinGrowthRate = async (req, res) => {
       const firstVal = growthRateOfCoin.data[0];
       const lastVal = growthRateOfCoin.data[growthRateOfCoin.data.length - 1];
 
-      const growthRate = ((lastVal["2"] - firstVal["3"]) * 100) / lastVal["2"];
+      const growthRate = ((lastVal["4"] - firstVal["1"]) * 100) / firstVal["1"];
 
       growthPercentageOfCoins.push({
         name: parsedCoins[i].name,

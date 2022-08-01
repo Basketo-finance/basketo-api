@@ -1,6 +1,6 @@
 const { default: axios } = require("axios");
 const moment = require("moment");
-const { getGraphData } = require("../utils/api");
+const { getOhlcData } = require("../utils/api");
 
 async function getDataPoints(req, res) {
   try {
@@ -8,7 +8,7 @@ async function getDataPoints(req, res) {
     let growthRatePercentage = [],
       timeStamp;
     for (let i = 0; i < basketData.length; i++) {
-      const graphData = await getGraphData(basketData[i], days);
+      const graphData = await getOhlcData(basketData[i], days);
       let coinsObj = {
         [basketData[i].name]: graphData.data.map((item) => ({ ...item })),
       };
@@ -34,7 +34,7 @@ async function getDataPoints(req, res) {
       a1.map((a, i) => {
         let obj = {
           point: a,
-          timeStamp: moment(a2[i]).format("MMM Do YYYY hh:mm a"),
+          timeStamp: moment(a2[i]).format("MMM Do YY hh:mm a"),
         };
         array.push(obj);
       });
