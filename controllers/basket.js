@@ -15,6 +15,7 @@ const createBasket = async (req, res) => {
     await basket.save();
     res.send(basket);
   } catch (err) {
+    console.log(err);
     res.status(400).json(err);
   }
 };
@@ -24,6 +25,7 @@ const getBasket = async (req, res) => {
     const basket = await singleBasket(req.params.id);
     res.send(basket);
   } catch (err) {
+    console.log(err);
     res.status(400).json(err);
   }
 };
@@ -46,6 +48,7 @@ const getBaskets = async (req, res) => {
 
     res.send({ baskets: basketsWithGrowthRates.flat() });
   } catch (err) {
+    console.log(err);
     res.status(400).json(err);
   }
 };

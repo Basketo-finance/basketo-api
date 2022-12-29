@@ -16,6 +16,7 @@ const createUser = async (req, res) => {
       res.send({ isExist: true });
     }
   } catch (err) {
+    console.log(err);
     res.status(400).json(err);
   }
 };
@@ -25,6 +26,7 @@ const getUser = async (req, res) => {
     const user = await User.findOne({ _id: req.params.id });
     res.send(user);
   } catch (err) {
+    console.log(err);
     res.status(400).json(err);
   }
 };
@@ -37,6 +39,7 @@ const isExist = async (req, res) => {
       res.send({ isExist: false });
     }
   } catch (err) {
+    console.log(err);
     res.status(400).json(err);
   }
 };

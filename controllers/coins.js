@@ -14,6 +14,7 @@ const getCoinsList = (req, res) => {
       })
       .catch((err) => console.log(err));
   } catch (err) {
+    console.log(err);
     res.status(400).json(err);
   }
 };
